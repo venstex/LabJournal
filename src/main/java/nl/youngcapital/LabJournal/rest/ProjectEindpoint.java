@@ -39,7 +39,7 @@ public class ProjectEindpoint {
 	@ResponseBody
 	@RequestMapping(value = "/projectpost", method = RequestMethod.POST)
 	public void postEntity(@RequestBody Project project) {
-		System.out.println("Jojo");
+		System.out.println("post request");
 		System.out.println(project.getName());
 		projectService.test(project);
 	}
@@ -47,9 +47,13 @@ public class ProjectEindpoint {
 	 public List<Project> findAll() {
 	    return (List<Project>)projectRepository.findAll();
 	  }
-	  @ResponseStatus(value = HttpStatus.OK)
-	  @RequestMapping(value = "/project/{id}", method = RequestMethod.DELETE)
-	  public void updateProject(@PathVariable  long id) {
+	 
+	 
+	 @ResponseBody
+	 //@ResponseStatus(value = HttpStatus.OK)
+	 @RequestMapping(value = "/project/{id}", method = RequestMethod.DELETE)
+	 public void updateProject(@PathVariable long id) {
+		System.out.println("delete request");
 	    projectRepository.delete(id);
 	  } 
 }

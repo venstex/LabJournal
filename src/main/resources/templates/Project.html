@@ -2,7 +2,7 @@
 <head>
 <script>
 	function doethijhet() {
-		alert("hij doet het!");
+		alert("hij doet het");
 	}
 
 	function list() {
@@ -27,9 +27,13 @@
 		for (i = 0; i < projects.length; i++) {
 			document.getElementById("list").innerHTML = document.getElementById("list").innerHTML
 					+ "<tr><td>"
+					+ projects[i].id
+					+ "</td><td>"
 					+ projects[i].name
 					+ "</td><td>"
 					+ projects[i].comment
+					+ "</td><td>"
+					+ "<button id=deletebutton onclick=deletebutton()>delete</button>"
 					+ "</td></tr>"
 		}
 	}
@@ -46,7 +50,22 @@
 		};
 		xhttp.open("POST", "http://localhost:8082/projectpost", true);
 		xhttp.setRequestHeader("Content-type", "application/json");
+		alert(project);
 		xhttp.send(project);
+	}
+	
+	function deletebutton() {
+		var xhttp = new XMLHttpRequest();
+		var id =50;
+		xhttp.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200) {
+				document.getElementById("deletebutton").innerHTML = this.responseText;
+			}
+		};
+		xhttp.open("DELETE", "http://localhost:8082/project/" + id, true);
+		//xhttp.setRequestHeader("Content-type", "application/json");
+		alert(id);
+		xhttp.send();
 	}
 </script>
 
